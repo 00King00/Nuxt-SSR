@@ -32,11 +32,11 @@ export default {
 		currentPage: 1,
 		perPage: 7,
 		setMoviesListOnPage: 10,
-		list1: []
-
+		storeList: []
 	}),
 	computed:{
 		list(){return this.$store.state.moviesList.imdbList},
+		//list(){return this.storeList},
 		loading(){return this.$store.state.moviesList.loading},
 		moviesList(){
 			return this.list
@@ -54,9 +54,10 @@ export default {
 		}
 	},
 	created(){
-	
+
 	},
 	asyncData (context) {
+		//return {storeList: context.store.moviesList.imdbList}
 		// let list = [];
 		// fireDb.collection("IMDB").get().then(function(querySnapshot) {
 		// 	querySnapshot.forEach(function(doc) {
@@ -65,7 +66,7 @@ export default {
 		// });
 		// return { list: list }
 	},
-	async fetch ({ store }) {
+	async fetch ({ store,  params }) {
 		console.log('fetch data');
 		await store.dispatch("moviesList/GET_IMDB_LIST");
 	},
