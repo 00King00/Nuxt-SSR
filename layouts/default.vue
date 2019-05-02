@@ -42,8 +42,8 @@ export default {
 				},
 				{
 					icon: 'bubble_chart',
-					title: 'Inspire',
-					to: '/inspire'
+					title: 'IMDB',
+					to: '/IMDB'
 				}
 			],
 			miniVariant: false,

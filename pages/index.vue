@@ -2,10 +2,9 @@
 div
 	h1 Test {{text}}
 	v-btn(@click="fetchText") Fetch data
- 
 </template>
 <script>
-import {fireDb} from '~/plugins/firebase.js'
+import fireDb from '~/plugins/firebase.js'
 export default {
 	data() {
 		return {
