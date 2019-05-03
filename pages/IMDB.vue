@@ -20,8 +20,6 @@ v-container(grid-list-lg align-center)
 			v-layout(row wrap )
 				v-flex.text-xs-center(fluid v-if="displayedList.length")
 					v-pagination(v-model="currentPage" :length="totalPage" :total-visible="perPage")
-		v-flex(xs12 v-for="i in list1")
-			div {{i}}
 </template>
 <script>
 import fireDb from '~/plugins/firebase'
@@ -32,14 +30,11 @@ export default {
 		currentPage: 1,
 		perPage: 7,
 		setMoviesListOnPage: 10,
-		storeList: []
 	}),
 	computed:{
-		list(){return this.$store.state.moviesList.imdbList},
-		//list(){return this.storeList},
 		loading(){return this.$store.state.moviesList.loading},
 		moviesList(){
-			return this.list
+			return this.$store.state.moviesList.imdbList
 		},
 		filteredList(){
 			return this.moviesList.filter( post => {
@@ -53,21 +48,7 @@ export default {
 			return Math.ceil(this.filteredList.length/this.setMoviesListOnPage)
 		}
 	},
-	created(){
-
-	},
-	asyncData (context) {
-		//return {storeList: context.store.moviesList.imdbList}
-		// let list = [];
-		// fireDb.collection("IMDB").get().then(function(querySnapshot) {
-		// 	querySnapshot.forEach(function(doc) {
-		// 		list.push(doc.data());
-		// 	});
-		// });
-		// return { list: list }
-	},
-	async fetch ({ store,  params }) {
-		console.log('fetch data');
+	async fetch ({ store}) {
 		await store.dispatch("moviesList/GET_IMDB_LIST");
 	},
 	methods:{

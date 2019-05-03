@@ -47,17 +47,15 @@ export const actions = {
 				commit('set_movies_list', lists)
 			}).catch(error => console.log(error))
 		},
-		GET_IMDB_LIST({commit}){
+		async GET_IMDB_LIST({commit}){
 			commit('set_loading', true)
-			fireDb.collection("IMDB").get().then(function(querySnapshot) {
-				let list = [];
+			let list = [];
+			let querySnapshot = await fireDb.collection("IMDB").get();
 				querySnapshot.forEach(function(doc) {
-					list.push(doc.data());
-				});
+						list.push(doc.data());
+					});
 				commit("set_imdb_list", list)
-			});
-			commit('set_loading', false)
-
+				commit('set_loading', false)
 		},
 		async SET_MOVIES_LIST({commit, state}){
 			commit('clear_error');
