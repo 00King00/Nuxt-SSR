@@ -40,8 +40,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify',
-	 '~/plugins/firebase.js'
+    '@/plugins/vuetify'
   ],
 
   /*
@@ -53,9 +52,14 @@ export default {
   /*
   ** Build configuration
   */
+  //buildDir:'../functions/nuxt',
   build: {
+    publicPath: '/public/',
     transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
+    plugins: [
+      new VuetifyLoaderPlugin(),
+
+    ],
     loaders: {
       stylus: {
         import: ['~assets/style/variables.styl']
